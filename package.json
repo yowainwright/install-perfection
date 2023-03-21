@@ -1,0 +1,15 @@
+{
+  "name": "install-prefection",
+  "version": "0.0.1",
+  "description": "Install dependencies with control, perfectly 💖",
+  "module": "dist/index.js",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "^0.4.0"
+  },
+  "author": {
+    "name": "Jeff Wainwright",
+    "email": "yowainwright@gmail.com",
+    "url": "https://jeffry.in"
+  }
+}

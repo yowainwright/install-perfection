@@ -1,2 +1,3 @@
-# install-prefection
-Install dependencies with control, perfectly
+# Install Prefection
+
+> Install dependencies with control, perfectly 💖
