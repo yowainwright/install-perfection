@@ -1,3 +1,7 @@
+import { PackageJson } from "type-fest";
+
+
+
 export interface Config {
   ignore?: Array<string>;
   include?: Array<string>;
@@ -24,4 +28,14 @@ export interface InstallDependenciesOptions {
   hasLockfile?: boolean;
   path?: string;
   runner?: string;
+}
+
+export interface ConfigureDependencyListOptions {
+  dependencies?: PackageJson.PackageJsonStandard['dependencies'];
+  include?: PackageJson.Dependency;
+  ignore?: string[];
+}
+
+export interface InstallPerfectionJson extends PackageJson.PackageJsonStandard {
+  install?: Config;
 }

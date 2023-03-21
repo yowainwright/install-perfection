@@ -6,7 +6,7 @@ import scripts from './scripts'
 import { Options } from './interfaces'
 const version = "VERSION";
 
-const explorer = cosmiconfigSync("ideps");
+const explorer = cosmiconfigSync("install");
 
 export async function action(options: Options = {}): Promise<void> {
   const result = options?.config
