@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { cosmiconfigSync } from "cosmiconfig";
+import { cosmiconfig } from "cosmiconfig";
 import scripts from './scripts'
 import { Options } from './interfaces'
 const version = "VERSION";
 
-const explorer = cosmiconfigSync("install");
+const explorer = cosmiconfig("install");
 
 export async function action(options: Options = {}): Promise<void> {
   const result = options?.config
-    ? explorer.load(options.config)
-    : explorer.search();
+    ? await explorer.load(options.config)
+    : await explorer.search();
   const { config = {} } = result || {};
   const { config: unusedConfig, isTestingCLI, ...rest } = options;
   if (isTestingCLI) {

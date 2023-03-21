@@ -2,14 +2,14 @@ import { promisify } from "util";
 import { exec } from "child_process";
 import { expect, test, vi } from 'vitest';
 import { stdoutToJSON } from "stdouttojson";
-import { cosmiconfigSync } from "cosmiconfig";
+import { cosmiconfig } from "cosmiconfig";
 import { action } from "../src/program";
 
 export const execPromise = promisify(exec);
 
 vi.mock("cosmiconfig", () => {
   let _cache;
-  const cosmiconfigSync = () => {
+  const cosmiconfig = () => {
     if (_cache) return _cache;
     _cache = {
       load: vi.fn(() => ({
@@ -21,7 +21,7 @@ vi.mock("cosmiconfig", () => {
     };
     return _cache;
   };
-  return { cosmiconfigSync };
+  return { cosmiconfig };
 });
 
 vi.mock("../scripts", () => ({
@@ -35,12 +35,7 @@ test("w/ no config reference", async () => {
   const result = stdoutToJSON(stdout);
 
   expect(result).toStrictEqual({
-    config: {
-      exclude: ['cosmiconfig'],
-      include: {
-        "lodash": "latest"
-      }
-    },
+    config: {},
     options: { isTestingCLI: "true" }
   });
 });
@@ -53,19 +48,14 @@ test('w/ options', async () => {
   const result = stdoutToJSON(stdout);
 
   expect(result).toStrictEqual({
-    config: {
-      exclude: ['cosmiconfig'],
-      include: {
-        "lodash": "latest"
-      }
-    },
+    config: {},
     options: { isTestingCLI: "true", debug: "true", file: "package.json" }
   });
 });
 
 test('w/ search path', async () => {
   const { stdout = "{}" } = await execPromise(
-    "ts-node ./src/program.ts --isTestingCLI --debug --config './.idepsrc'"
+    "ts-node ./src/program.ts --isTestingCLI --debug --config './__fixtures__/.installrc'"
   );
 
   const result = stdoutToJSON(stdout);
@@ -77,6 +67,6 @@ test('w/ search path', async () => {
         "lodash": "latest"
       }
     },
-    options: { isTestingCLI: "true", debug: "true", config: "./.idepsrc" }
+    options: { isTestingCLI: "true", debug: "true", config: "./__fixtures__/.installrc" }
   });
 });
