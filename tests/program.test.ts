@@ -1,10 +1,7 @@
-import { promisify } from "util";
-import { exec } from "child_process";
-import { expect, test, vi } from 'vitest';
-import { stdoutToJSON } from "stdouttojson";
-import * as cosmiconfig from "cosmiconfig";
 
-export const execPromise = promisify(exec);
+import { execaCommand } from "execa";
+import { expect, test, vi } from 'vitest';
+import JSON5 from "json5";
 
 vi.doMock("cosmiconfig", () => {
   let _cache;
@@ -24,44 +21,53 @@ vi.doMock("cosmiconfig", () => {
 });
 
 test("w/ no config reference", async () => {
-  const { stdout = "{}" } = await execPromise(
+  const { stdout = "{}" } = await execaCommand(
     "ts-node ./src/program.ts --isTestingCLI"
   );
-  const result = stdoutToJSON(stdout);
+  const json = JSON5.parse(stdout);
 
-  expect(result).toStrictEqual({
+  expect(json).toStrictEqual({
     config: {},
-    options: { isTestingCLI: "true" }
+    options: { isTestingCLI: true }
   });
 });
 
 test('w/ options', async () => {
-  const { stdout = "{}" } = await execPromise(
-    "ts-node ./src/program.ts --isTestingCLI --debug --file 'package.json'"
+  const { stdout = "{}" } = await execaCommand(
+    "ts-node ./src/program.ts --isTestingCLI --debug --file package.json"
   );
-
-  const result = stdoutToJSON(stdout);
-
-  expect(result).toStrictEqual({
+  const json = JSON5.parse(stdout);
+  expect(json).toStrictEqual({
     config: {},
-    options: { isTestingCLI: "true", debug: "true", file: "package.json" }
+    options: { isTestingCLI: true, debug: true, file: "package.json" }
   });
 });
 
 test('w/ search path', async () => {
-  const { stdout = "{}" } = await execPromise(
-    "ts-node ./src/program.ts --isTestingCLI --debug --config './__fixtures__/.installrc'"
+  const { stdout = "{}" } = await execaCommand(
+    "ts-node ./src/program.ts --isTestingCLI --debug --config ./__fixtures__/.installrc"
   );
 
-  const result = stdoutToJSON(stdout);
+  const json = JSON5.parse(stdout);
 
-  expect(result).toStrictEqual({
+  expect(json).toStrictEqual({
     config: {
       ignore: ['cosmiconfig'],
       include: {
         "lodash": "latest"
       }
     },
-    options: { isTestingCLI: "true", debug: "true", config: "./__fixtures__/.installrc" }
+    options: { isTestingCLI: true, debug: true, config: "./__fixtures__/.installrc" }
+  });
+});
+
+test('w/ include', async () => {
+  const { stdout = "{}" } = await execaCommand(
+    "ts-node ./src/program.ts --isTestingCLI --debug --include {\"foo\":\"bar\"}"
+  );
+  const json = JSON5.parse(stdout);
+  expect(json).toStrictEqual({
+    config: {},
+    options: { isTestingCLI: true, debug: true, include: ['{"foo":"bar"}'] }
   });
 });

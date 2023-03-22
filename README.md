@@ -25,7 +25,7 @@ Very easy. If not, [submit an issue](https://github.com/yowainwright/install-per
 
 You can use Install Perfection as a CLI only.
 ```bash
-npx install-perfection --include '{"playwright-core": "latest"}' --ignore '{"playwright": "latest"}'
+npx install-perfection --include {"playwright-core": "latest"} --ignore {"playwright": "latest"}
 ```
 
 If you'd like to use it a bit more explicitly, you can configure it in your `package.json`.
@@ -128,7 +128,7 @@ Options:
 Install an additional list of dependencies.
 
 ```sh
-install-perfection --include '{"playwright-core": "latest"}' '{"react": "latest"}'
+install-perfection --include {"playwright-core": "latest"}' '{"react": "latest"}
 ```
 
 Ignore an array of dependencies.
@@ -140,7 +140,7 @@ install-perfection --ignore playwright react
 Ignore and install dependencies for Install Perfection.
 
 ```sh
-install-perfection --ignore playwright react --include '{"playwright-core": "latest"}' '{"react": "latest"}'
+install-perfection --ignore playwright react --include {"playwright-core": "latest"} {"react": "latest"}
 ```
 
 Install while including a lock file.

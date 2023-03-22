@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "rootDir": "src",
     "declaration": true,
     "outDir": "./dist",
@@ -25,11 +25,7 @@
   "include": ["src", "test"],
   "exclude": ["test/*.ts", "dist"],
   "ts-node": {
-    "transpileOnly": true,
     "esm": true,
-    "moduleTypes": {
-      "package.json": "cjs",
-      "src/*": "cjs"
-    }
+    "experimentalSpecifierResolution": "node",
   }
 }

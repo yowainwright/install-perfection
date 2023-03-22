@@ -1,8 +1,6 @@
-
-import { promisify } from "util";
-import { exec } from 'child_process'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
+import { execaCommand } from 'execa';
 import JSON5 from 'json5'
 
 import {
@@ -12,8 +10,6 @@ import {
   InstallPerfectionJson,
   Options
 } from './interfaces'
-
-export const execPromise = promisify(exec);
 
 export function resolveJSON(
   path: string,
@@ -45,7 +41,7 @@ export function configureDependencyList({ dependencies = {}, include = {}, ignor
 export async function install({
   dest,
   debug = false,
-  exec = execPromise,
+  exec = execaCommand,
   file = 'package.json',
   hasLockfile = false,
   ignore = [],
@@ -58,12 +54,15 @@ export async function install({
   const json = resolveJSON(pkg, debug);
   const { dependencies = {} } = json || {};
   const deps = configureDependencyList({ dependencies, ignore, include });
-  const depsString = deps.map(({ name, version }) => `${name}@${version}`).join(' ');
+  const depsList = deps.map(({ name, version }) => `${name}@${version}`)
+  const depsListLog = depsList.map(dep => `+ ${dep}`).join('\n')
+  const depsString = depsList.join(' ');
   if (debug) console.log('install-perfection:debugging:', { deps, depsString });
   if (isTesting || deps.length < 1) {
     return depsString;
   }
-  await exec(`${runner} install ${dest ? `--prefix ${dest} ` : ' '}${depsString} -S --package-lock=${hasLockfile}`);
+  console.info(`${depsListLog}`);
+  await exec(`${runner} install ${dest ? `--prefix ${dest}` + ' ' : ' '}${depsString} -S --package-lock=${hasLockfile}`);
 }
 
 export const configureDepsToInclude = ({ include: configInclude = {} }: Config, { include: unmergedInclude = [] }: Options) => {
