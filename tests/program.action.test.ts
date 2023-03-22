@@ -1,7 +1,9 @@
 import { expect, test, vi } from 'vitest';
 import { action } from '../src/program'
-import { script } from '../src/scripts'
+import * as scripts from '../src/scripts'
 import { Options } from '../src/interfaces'
+
+const { script } = scripts;
 
 vi.mock("../src/scripts", async () => {
   const actual: Record<string, unknown> = await vi.importActual("../src/scripts")

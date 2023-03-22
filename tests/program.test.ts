@@ -2,7 +2,7 @@ import { promisify } from "util";
 import { exec } from "child_process";
 import { expect, test, vi } from 'vitest';
 import { stdoutToJSON } from "stdouttojson";
-import { cosmiconfig } from "cosmiconfig";
+import * as cosmiconfig from "cosmiconfig";
 
 export const execPromise = promisify(exec);
 
