@@ -1,5 +1,5 @@
 {
-  "name": "install-prefection",
+  "name": "install-perfection",
   "version": "0.0.1",
   "description": "Install dependencies with control, perfectly 💖",
   "module": "dist/index.js",
