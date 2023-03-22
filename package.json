@@ -99,6 +99,7 @@
   },
   "release-it": {
     "git": {
+      "requireBranch": "main",
       "commitMessage": "chore: release v$npm_package_version"
     }
   },
