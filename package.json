@@ -13,7 +13,7 @@
     }
   },
   "bin": {
-    "merge-tsconfigs": "dist/index.cjs"
+    "install-perfection": "dist/index.cjs"
   },
   "files": [
     "dist"
