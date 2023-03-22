@@ -1,7 +1,5 @@
 import { PackageJson } from "type-fest";
 
-
-
 export interface Config {
   ignore?: Array<string>;
   include?: Record<string, string>;

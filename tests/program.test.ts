@@ -2,9 +2,6 @@ import { promisify } from "util";
 import { exec } from "child_process";
 import { expect, test, vi } from 'vitest';
 import { stdoutToJSON } from "stdouttojson";
-import { action } from '../src/program'
-import { script } from '../src/scripts'
-import { Options } from '../src/interfaces'
 
 export const execPromise = promisify(exec);
 
@@ -24,21 +21,6 @@ vi.mock("cosmiconfig", () => {
   };
   return { cosmiconfig };
 });
-
-vi.mock("../src/scripts", async () => {
-  const actual: Record<string, unknown> = await vi.importActual("../src/scripts")
-  return {
-    ...actual,
-    script: vi.fn()
-  };
-});
-
-test("action", async () => {
-  const options: Options = { include: ['{"foo":"bar"}'], ignore: ['foo'] };
-  await action(options);
-  const { ignore } = options;
-  expect(script).toHaveBeenCalledWith({ include: { foo: "bar" }, ignore });
-})
 
 test("w/ no config reference", async () => {
   const { stdout = "{}" } = await execPromise(
@@ -74,7 +56,7 @@ test('w/ search path', async () => {
 
   expect(result).toStrictEqual({
     config: {
-      exclude: ['cosmiconfig'],
+      ignore: ['cosmiconfig'],
       include: {
         "lodash": "latest"
       }

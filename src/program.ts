@@ -29,7 +29,7 @@ export async function action(options: Options = {}): Promise<void> {
   const ignore = configureDepsToIgnore(config, options)
   await script({
     ...rest,
-    ...(ignore.length ? { ignore } : {}),
+    ...(ignore?.length ? { ignore } : {}),
     ...(Object.keys(include).length ? { include } : {})
   });
 }
