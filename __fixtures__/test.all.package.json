@@ -8,7 +8,7 @@
     "jest": "26.6.3",
     "@types/ramda": "0.27.34"
   },
-  "ideps": {
+  "install": {
     "include": {
       "react": "17.0.1",
       "@babel/core": "7.12.10",

@@ -53,14 +53,16 @@ export async function install({
   isTesting = false,
   path = "./",
   runner = 'npm',
-}: InstallDependenciesOptions): Promise<void> {
+}: InstallDependenciesOptions): Promise<void | string> {
   const pkg = resolve(`${path}${file}`);
   const json = resolveJSON(pkg, debug);
   const { dependencies = {} } = json || {};
   const deps = configureDependencyList({ dependencies, ignore, include });
   const depsString = deps.map(({ name, version }) => `${name}@${version}`).join(' ');
   if (debug) console.log('install-perfection:debugging:', { deps, depsString });
-  if (isTesting || deps.length < 1) return;
+  if (isTesting || deps.length < 1) {
+    return depsString;
+  }
   await exec(`${runner} install ${dest ? `--prefix ${dest} ` : ' '}${depsString} -S --package-lock=${hasLockfile}`);
 }
 

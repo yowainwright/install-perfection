@@ -49,6 +49,7 @@ program
   .option("-r, --runner <runner>", "npm, pnpm, or yarn (bun support coming; use npm for bun now)")
   .option("-i, --include [include...]", "include dependencies, include an array of json parseable string wrapped objects, e.g. `--include '{\"foo\": \"bar\"}' '{\"biz\": \"baz\"}' `")
   .option("--ignore [exclude...]", "exclude dependencies, e.g. `--exclude foo bar`")
+  .option('--ignoreDeps', 'ignore dependencies object in package.json')
   .action(action)
   .parse(process.argv);
 
