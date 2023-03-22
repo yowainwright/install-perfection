@@ -23,7 +23,25 @@ You can use Install Perfection as a CLI only.
 npx install-perfection --include '{"playwright-core": "latest"}' --ignore '{"playwright": "latest"}'
 ```
 
-If you'd like to use it a bit more explicitly, you can configure it to read an `.installrc` config file, or as an object within your `package.json`.
+If you'd like to use it a bit more explicitly, you can configure it in your `package.json`.
+
+```ts
+// package.json
+{
+  ...
+  "install": {
+    "include": {
+      "playwright-core": "latest"
+    },
+    "ignore": {
+      "playwright": "latest"
+    }
+  }
+  ...
+}
+```
+
+Or, if you like to keep your `package.json` pure, you can create a `.installrc` file with the same configuration.
 
 ```ts
 // .installrc
@@ -54,7 +72,29 @@ install({
 
 ---
 
+## How do I use Install Perfection?
+
+Install Perfection is built to be used as a CLI first and foremost. It also exports node functions which can be used to preform the same install operation.
+
+---
+
+Install or reference Install Perfection in your project.
+
+```bash
+npm install install-perfection --save-dev
+```
+
+Or via a CDN (untested)
+
+```
+import { install } from "https://cdn.skypack.dev/merge-tsconfigs@latest"
+```
+
+---
+
 ## CLI API
+
+Listed below are the CLI options and arguments to execute install-perfection. To *view all cli options, run `install-perfection --help`!
 
 ```bash
 Usage: install-perfection [options]
@@ -74,19 +114,83 @@ Options:
                               wrapped objects, e.g. `--include '{"foo": "bar"}' '{"biz": "baz"}'
                               `
   --ignore [exclude...]       exclude dependencies, e.g. `--exclude foo bar`
-  --ignoreDeps                ignore dependencies object in package.json
   -h, --help                  display help for command
 ```
 
 ---
 ### Recipes
 
+Install an additional list of dependencies.
+
+```sh
+install-perfection --include '{"playwright-core": "latest"}' '{"react": "latest"}'
+```
+
+Ignore an array of dependencies.
+
+```sh
+install-perfection --ignore playwright react
+```
+
+Ignore and install dependencies for Install Perfection.
+
+```sh
+install-perfection --ignore playwright react --include '{"playwright-core": "latest"}' '{"react": "latest"}'
+```
+
+Install while including a lock file.
+
+```sh
+install-perfection --has-lockfile --ignore playwright
+```
+
+Add a custom path to the package.json file you're installing perfection for.
+
+```sh
+install-perfection --path ./path/to/package.json --ignore playwright
+```
+
+Add a custom path to install your `node_modules`.
+
+```sh
+install-perfection --dest ./path/to/node_modules_dest --ignore playwright
+```
+
+Use a custom runner (dependence manager)
+
+```sh
+install-perfection --runner pnpm --ignore playwright
+```
+
+Make it fast by inputting your config to your command.
+
+```sh
+install-perfection --config ./path/to/.installrc --ignore playwright
+```
+
+Get debugging information.
+
+```sh
+install-perfection --debug --ignore playwright
+```
 
 ---
 ## Node API
 
+The node API works exactly the same as the CLI API.
 
-### Recipes
+```ts
+import { install } from 'install-perfection'
+
+install({
+  include: {
+    'playwright-core': 'latest'
+  },
+  ignore: {
+    'playwright': 'latest'
+  },
+})
+```
 
 ---
 
