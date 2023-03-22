@@ -5,7 +5,6 @@ import { stdoutToJSON } from "stdouttojson";
 import { action } from '../src/program'
 import { script } from '../src/scripts'
 import { Options } from '../src/interfaces'
-import { Spread } from "type-fest";
 
 export const execPromise = promisify(exec);
 
@@ -27,7 +26,7 @@ vi.mock("cosmiconfig", () => {
 });
 
 vi.mock("../src/scripts", async () => {
-  const actual = await vi.importActual("../src/scripts")
+  const actual: Record<string, unknown> = await vi.importActual("../src/scripts")
   return {
     ...actual,
     script: vi.fn()
