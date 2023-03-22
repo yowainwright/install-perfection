@@ -14,19 +14,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: oven-sh/setup-bun@v1
         with:
-          version: latest
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm build
-      - run: pnpm test
-      - run: pnpm run update
-      - run: pnpm install --no-frozen-lockfile
+          bun-version: latest
+
+      - run: bun install
+      - run: bun run build
+      - run: bun run lint
+      - run: bun test
+      - run: bun install
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
