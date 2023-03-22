@@ -1,6 +1,6 @@
 {
   "name": "install-perfection",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Install dependencies with control, perfectly 💖",
   "module": "dist/index.js",
   "type": "module",
