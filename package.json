@@ -27,10 +27,9 @@
     "lint": "eslint src --ext .ts",
     "lint-fix": "bun run lint --fix",
     "pre-commit": "lint-staged",
-    "prepare": "husky install && pnpm env use --global 18",
+    "prepare": "husky install",
     "prepublishOnly": "bun run test && bun run build",
     "release": "release-it",
-    "setup:config": "mkdir config && cd config npx tsc --init",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "update": "codependence --update"
