@@ -2,10 +2,11 @@ import { promisify } from "util";
 import { exec } from "child_process";
 import { expect, test, vi } from 'vitest';
 import { stdoutToJSON } from "stdouttojson";
+import { cosmiconfig } from "cosmiconfig";
 
 export const execPromise = promisify(exec);
 
-vi.mock("cosmiconfig", () => {
+vi.doMock("cosmiconfig", () => {
   let _cache;
   const cosmiconfig = () => {
     if (_cache) return _cache;
