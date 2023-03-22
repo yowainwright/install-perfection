@@ -4,7 +4,7 @@ import { PackageJson } from "type-fest";
 
 export interface Config {
   ignore?: Array<string>;
-  include?: Array<string>;
+  include?: Record<string, string>;
 }
 
 export interface Options {
@@ -16,10 +16,13 @@ export interface Options {
   isTesting?: boolean;
   isTestingCLI?: boolean;
   runner?: string;
+  include?: string[];
+  ignore?: string[];
 };
 
 export interface InstallDependenciesOptions {
-  config?: Config;
+  ignore?: string[];
+  include?: Record<string, string>;
   debug?: boolean
   dest?: string;
   exec?: any;

@@ -2,8 +2,8 @@
 
 import { program } from 'commander';
 import { cosmiconfig } from "cosmiconfig";
-import scripts from './scripts'
-import { Options } from './interfaces'
+import { configureDepsToInclude, configureDepsToIgnore, script } from './scripts'
+import { Config, Options } from './interfaces'
 const version = "VERSION";
 
 const explorer = cosmiconfig("install");
@@ -12,14 +12,26 @@ export async function action(options: Options = {}): Promise<void> {
   const result = options?.config
     ? await explorer.load(options.config)
     : await explorer.search();
-  const { config = {} } = result || {};
-  const { config: unusedConfig, isTestingCLI, ...rest } = options;
+  const config: Config = result?.config || {};
+  const {
+    isTestingCLI,
+    config: unusedConfig,
+    include: unusedInclude,
+    ignore: unusedIgnore,
+    ...rest
+  } = options;
+
   if (isTestingCLI) {
     console.info({ options, config });
     return;
   }
-
-  await scripts({ ...rest, config });
+  const include = configureDepsToInclude(config, options)
+  const ignore = configureDepsToIgnore(config, options)
+  await script({
+    ...rest,
+    ...(ignore.length ? { ignore } : {}),
+    ...(Object.keys(include).length ? { include } : {})
+  });
 }
 
 program
@@ -34,8 +46,12 @@ program
   .option("-t, --isTestingCLI", "enables CLI testing, no scripts are run")
   .option('--isTesting', "enables testing, no scripts are run")
   .option("-p, --path <path>", "path to package.json file")
-  .option("-r, --runner <runner>", "npm, pnpm, or yarn")
+  .option("-r, --runner <runner>", "npm, pnpm, or yarn (bun support coming; use npm for bun now)")
+  .option("-i, --include [include...]", "include dependencies, include an array of json parseable string wrapped objects, e.g. `--include '{\"foo\": \"bar\"}' '{\"biz\": \"baz\"}' `")
+  .option("--ignore [exclude...]", "exclude dependencies, e.g. `--exclude foo bar`")
   .action(action)
   .parse(process.argv);
 
 export { program }
+
+export default program

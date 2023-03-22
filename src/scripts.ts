@@ -6,9 +6,11 @@ import { resolve } from 'path'
 import JSON5 from 'json5'
 
 import {
+  Config,
+  ConfigureDependencyListOptions,
   InstallDependenciesOptions,
   InstallPerfectionJson,
-  ConfigureDependencyListOptions
+  Options
 } from './interfaces'
 
 export const execPromise = promisify(exec);
@@ -41,26 +43,35 @@ export function configureDependencyList({ dependencies = {}, include = {}, ignor
 }
 
 export async function install({
-  config,
-  file = 'package.json',
   dest,
   debug = false,
-  isTesting = false,
   exec = execPromise,
+  file = 'package.json',
   hasLockfile = false,
+  ignore = [],
+  include = {},
+  isTesting = false,
   path = "./",
   runner = 'npm',
 }: InstallDependenciesOptions): Promise<void> {
   const pkg = resolve(`${path}${file}`);
   const json = resolveJSON(pkg, debug);
-  const { dependencies = {}, install } = json || {};
-  const { ignore = [], include = {} } = config || install || {};
+  const { dependencies = {} } = json || {};
   const deps = configureDependencyList({ dependencies, ignore, include });
   const depsString = deps.map(({ name, version }) => `${name}@${version}`).join(' ');
-  if (debug) console.log('install-perfection:debugging:', { deps, config, depsString });
+  if (debug) console.log('install-perfection:debugging:', { deps, depsString });
   if (isTesting || deps.length < 1) return;
   await exec(`${runner} install ${dest ? `--prefix ${dest} ` : ' '}${depsString} -S --package-lock=${hasLockfile}`);
 }
 
+export const configureDepsToInclude = ({ include: configInclude = {} }: Config, { include: unmergedInclude = [] }: Options) => {
+  const optionInclude = unmergedInclude?.length ? unmergedInclude.reduce((acc: Record<string, string>, curr: string) => ({ ...acc, ...JSON5.parse(curr) as Record<string, string> }), {}) : {};
+  return { ...configInclude, ...optionInclude };
+}
+
+export const configureDepsToIgnore = ({ ignore: configIgnore = [] }: Config, { ignore: optionsIgnore = [] }: Options) => [...configIgnore, ...optionsIgnore];
+
+
 export const installPerfection = install
+export const script = installPerfection
 export default installPerfection;
