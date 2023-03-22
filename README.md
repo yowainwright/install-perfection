@@ -8,9 +8,14 @@
 [![Github](https://badgen.net/badge/icon/github?icon=github&label&color=grey)](https://github.com/yowainwright/install-perfection)
 
 
-_**Install dependencies with control, perfectly 💖**_
+_**Install dependencies with control, (perfection) 💖**_
 
-Sometimes, you need nuance and control over your npm dependencies. You might want to minimize your `node_module` folder size when shipping to production. Or, you might want to switch dependencies on the fly. For this, **Install Perfection** might be the tool you need.
+Sometimes, you need nuance and control over your npm dependencies.
+
+> You might want to minimize your `node_module` folder size when shipping to production.<br>
+> Or, you might want to switch dependencies on the fly.
+
+For this, **Install Perfection** might be the tool you need.
 
 ---
 
@@ -196,7 +201,7 @@ install({
 
 ## Is the name, "Install Perfection", a bit much?
 
-Yes. _Just like your `node_module` folder_. 😜 Use Install Perfect to make it a bit better.
+Yes. _Just like your `node_module` folder_. 😜 Use Install Perfection to make your node_modules _a bit less_.
 
 ---
 
