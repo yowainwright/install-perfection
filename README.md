@@ -8,7 +8,7 @@
 [![Github](https://badgen.net/badge/icon/github?icon=github&label&color=grey)](https://github.com/yowainwright/install-perfection)
 
 
-_**Install dependencies with control, (perfection) 💖**_
+_**Install dependencies with control 💖**_
 
 Sometimes, you need nuance and control over your npm dependencies.
 
