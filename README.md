@@ -12,10 +12,7 @@ _**Install dependencies with control 💖**_
 
 Sometimes, you need nuance and control over your npm dependencies.
 
-> You might want to minimize your `node_module` folder size when shipping to production.<br>
-> Or, you might want to switch dependencies on the fly.
-
-For this, **Install Perfection** might be the tool you need.
+> You might want to minimize your `node_module` folder size when shipping to production. Or, you might want to switch dependencies on the fly. For this, **Install Perfection** might be the tool you need.
 
 ---
 
