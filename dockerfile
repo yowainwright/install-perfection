@@ -2,8 +2,8 @@
 
 FROM node:18-alpine
 FROM oven/bun:latest
-WORKDIR /src
+WORKDIR /app
 COPY package.json .
-RUN bun install
 COPY . .
+RUN bun install
 CMD ["bun", "run", "build"]
