@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:18-alpine
+FROM node:18-bullseye
 FROM oven/bun:latest
 WORKDIR /app
 COPY package.json .
