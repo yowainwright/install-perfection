@@ -1,7 +1,7 @@
 {
 	"name": "Node.js",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "../dockerfile-dev",
 		"args": { "VARIANT": "18-bullseye" }
 	},
 	"extensions": [
