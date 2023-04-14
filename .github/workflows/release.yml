@@ -1,0 +1,22 @@
+on:
+  schedule:
+    - cron:  '0 0 2 * *'
+
+jobs:
+  publish:
+    if: github.event.label.name == 'publish 📦'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - run: bun install --no-save
+      - run: bun run build
+      - run: bun run test
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
