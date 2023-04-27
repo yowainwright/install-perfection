@@ -30,7 +30,7 @@ if $HAS_BUN; then
   BUN_LOADED_VERSION=$(command bun --version)
   if [ "$BUN_LOADED_VERSION" != "$BUN_VERSION" ]; then
     read -r -p "bun versions are out of snyc. Run 'npm install -g bun@${BUN_VERSION}'? [Y/n]" response
-    esponse=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
     if [ $response = "y" ] || [ -z $response ]; then
       npm install -g bun@$BUN_VERSION
       echo 'bun version updated globally'
