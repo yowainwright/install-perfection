@@ -50,7 +50,6 @@
     "@types/node": "20.4.5",
     "@typescript-eslint/eslint-plugin": "6.2.0",
     "@typescript-eslint/parser": "6.2.0",
-    "pnpm-types": "^0.4.0",
     "codependence": "^0.2.6",
     "eslint": "8.45.0",
     "eslint-config-prettier": "^8.8.0",

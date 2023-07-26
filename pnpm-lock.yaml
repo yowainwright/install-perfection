@@ -43,9 +43,6 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: 6.2.0
     version: 6.2.0(eslint@8.45.0)(typescript@5.1.6)
-  bun-types:
-    specifier: ^0.4.0
-    version: 0.4.0
   codependence:
     specifier: ^0.2.6
     version: 0.2.6
@@ -1503,10 +1500,6 @@ packages:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-
-  /bun-types@0.4.0:
-    resolution: {integrity: sha512-KaXuDgaIHmvpCxpZCVUHTbsfKYRnSKBdzlYMBNjHnav7VCvT6KqEvykd007xP86iCxytO/7C9yLvR2+7JRtMrA==}
-    dev: true
 
   /bundle-name@3.0.0:
     resolution: {integrity: sha512-PKA4BeSvBpQKQ8iPOGCSiell+N8P+Tf1DlwqmYhpe2gAhKPHn8EYOxVT+ShuGmhg8lN8XiSlS80yiExKXrURlw==}
