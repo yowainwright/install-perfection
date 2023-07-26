@@ -17,9 +17,8 @@ export async function action(options: Options = {}): Promise<void> {
   const config: Config = result?.config || {};
   const {
     isTestingCLI,
-    config: unusedConfig,
-    include: unusedInclude,
-    ignore: unusedIgnore,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    config: unusedConfig, include: unusedInclude, ignore: unusedIgnore,
     ...rest
   } = options;
 

@@ -23,6 +23,7 @@ export interface InstallDependenciesOptions {
   include?: Record<string, string>;
   debug?: boolean
   dest?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   exec?: any;
   file?: string;
   isTesting?: boolean;

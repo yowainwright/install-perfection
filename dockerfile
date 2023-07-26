@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 
 FROM node:18-bullseye
-FROM oven/bun:latest
+RUN apt-get update && apt-get install -y pnpm
 WORKDIR /app
 COPY package.json .
 COPY . .
-RUN bun install
+RUN pnpm install
 CMD ["bun", "run", "build"]
