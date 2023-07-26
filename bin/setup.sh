@@ -12,36 +12,36 @@ fi
 [ ! -f .env ] || export $(grep -v '^#' .env | xargs)
 
 # Check to see if Homebrew, Go, and Pre-commit are installed, and install it if it is not
-HAS_NVM=$(command -v nvm >/dev/null)
-HAS_BUN=$(command -v bun >/dev/null)
+HAS_N=$(command -v n >/dev/null)
+HAS_PNPM=$(command -v pnpm >/dev/null)
 
 
-if $HAS_NVM; then
-  . ~/.nvm/nvm.sh install
+if $HAS_N; then
+  n install auto
 else
-  echo "Please install NVM or ensure your version matches the .nvmrc file"
+  echo "Please install N or ensure your Node version matches the .nvmrc file"
   exit 1
 fi
 
-BUN_MSG="Please install bun or ensure your version matches the bun version within the .env file"
+PNPM_MSG="Please install pnpm or ensure your version matches the pnpm version within the .env file"
 
-# load bun
-if $HAS_BUN; then
-  BUN_LOADED_VERSION=$(command bun --version)
-  if [ "$BUN_LOADED_VERSION" != "$BUN_VERSION" ]; then
-    read -r -p "bun versions are out of snyc. Run 'npm install -g bun@${BUN_VERSION}'? [Y/n]" response
+# load pnpm
+if $HAS_PNPM; then
+  PNPM_LOADED_VERSION=$(command pnpm --version)
+  if [ "$PNPM_LOADED_VERSION" != "$PNPM_VERSION" ]; then
+    read -r -p "pnpm versions are out of snyc. Run 'npm install -g pnpm@${PNPM_VERSION}'? [Y/n]" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
     if [ $response = "y" ] || [ -z $response ]; then
-      npm install -g bun@$BUN_VERSION
-      echo 'bun version updated globally'
+      npm install -g pnpm@$PNPM_VERSION
+      echo 'pnpm version updated globally'
     else
-      echo $BUN_MSG
+      echo $PNPM_MSG
       exit 1
     fi;
   else
-    echo "bun version is up-to-date"
+    echo "pnpm version is up-to-date"
   fi
 else
-  echo $BUN_MSG
+  echo $PNPM_MSG
   exit 1
 fi

@@ -7,6 +7,6 @@
 	"extensions": [
 		"dbaeumer.vscode-eslint"
 	],
-	"postCreateCommand": "bun install",
+	"postCreateCommand": "pnpm install",
 	"remoteUser": "node"
 }
