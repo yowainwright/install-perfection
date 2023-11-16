@@ -22,7 +22,7 @@ vi.doMock("cosmiconfig", () => {
 
 test("w/ no config reference", async () => {
   const { stdout = "{}" } = await execaCommand(
-    "ts-node ./src/program.ts --isTestingCLI"
+    "node --no-warnings --loader ts-node/esm ./src/program.ts --isTestingCLI"
   );
   const json = JSON5.parse(stdout);
 
@@ -34,7 +34,7 @@ test("w/ no config reference", async () => {
 
 test('w/ options', async () => {
   const { stdout = "{}" } = await execaCommand(
-    "ts-node ./src/program.ts --isTestingCLI --debug --file package.json"
+    "node --no-warnings --loader ts-node/esm ./src/program.ts --isTestingCLI --debug --file package.json"
   );
   const json = JSON5.parse(stdout);
   expect(json).toStrictEqual({
@@ -45,7 +45,7 @@ test('w/ options', async () => {
 
 test('w/ search path', async () => {
   const { stdout = "{}" } = await execaCommand(
-    "ts-node ./src/program.ts --isTestingCLI --debug --config ./__fixtures__/.installrc"
+    "node --no-warnings --loader ts-node/esm ./src/program.ts --isTestingCLI --debug --config ./__fixtures__/.installrc"
   );
 
   const json = JSON5.parse(stdout);
@@ -63,7 +63,7 @@ test('w/ search path', async () => {
 
 test('w/ include', async () => {
   const { stdout = "{}" } = await execaCommand(
-    "ts-node ./src/program.ts --isTestingCLI --debug --include {\"foo\":\"bar\"}"
+    "node --no-warnings --loader ts-node/esm ./src/program.ts --isTestingCLI --debug --include {\"foo\":\"bar\"}"
   );
   const json = JSON5.parse(stdout);
   expect(json).toStrictEqual({

@@ -21,8 +21,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "clean": "rimraf dist config",
-    "cmd:test": "ts-node src/program.ts --isTestingCLI",
-    "cmd:test:quick": "rimraf tmp && mkdir tmp && ts-node src/program.ts --path ./__fixtures__/ --file test.all.package.json --dest ./tmp && rimraf tmp",
+    "cmd:test": "node --no-warnings --loader ts-node/esm src/program.ts --isTestingCLI",
+    "cmd:test:quick": "rimraf tmp && mkdir tmp && node --no-warnings --loader ts-node/esm src/program.ts --path ./__fixtures__/ --file test.all.package.json --dest ./tmp && rimraf tmp",
     "commit": "git-cz",
     "commit-msg": "commitlint --edit $1",
     "lint": "eslint src --ext .ts",
@@ -38,14 +38,14 @@
   "dependencies": {
     "commander": "11.1.0",
     "cosmiconfig": "8.3.6",
-    "execa": "^7.1.1",
+    "execa": "^8.0.1",
     "gradient-string": "^2.0.2",
     "json5": "^2.2.3",
-    "ora": "^6.3.1"
+    "ora": "^7.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "18.4.1",
-    "@commitlint/config-conventional": "18.4.0",
+    "@commitlint/cli": "18.4.2",
+    "@commitlint/config-conventional": "18.4.2",
     "@types/gradient-string": "1.1.5",
     "@types/node": "20.9.0",
     "@typescript-eslint/eslint-plugin": "6.11.0",
@@ -64,7 +64,7 @@
     "tsup": "7.2.0",
     "type-fest": "4.7.1",
     "typescript": "5.2.2",
-    "vitest": "^0.29.8"
+    "vitest": "^0.34.6"
   },
   "commitlint": {
     "extends": [
