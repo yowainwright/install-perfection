@@ -2,8 +2,6 @@
 
 ![Typed with TypeScript](https://flat.badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=blue&color=555555)
 [![npm version](https://badge.fury.io/js/install-perfection.svg)](https://badge.fury.io/js/install-perfection)
-[![unpkg](https://img.shields.io/badge/unpkg-blue.svg)](https://unpkg.com/install-perfection@latest/dist/index.js)
-[![skypack](https://img.shields.io/badge/skypack-blueviolet.svg)](https://cdn.skypack.dev/install-perfection?min)
 ![ci](https://github.com/yowainwright/install-perfection/actions/workflows/ci.yml/badge.svg)
 [![Github](https://badgen.net/badge/icon/github?icon=github&label&color=grey)](https://github.com/yowainwright/install-perfection)
 
@@ -84,12 +82,6 @@ Install or reference Install Perfection in your project.
 
 ```bash
 npm install install-perfection --save-dev
-```
-
-Or via a CDN (untested)
-
-```
-import { install } from "https://cdn.skypack.dev/merge-tsconfigs@latest"
 ```
 
 ---
