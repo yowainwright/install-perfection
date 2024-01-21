@@ -34,13 +34,13 @@ export async function action(options: Options = {}): Promise<void> {
     ...(ignore?.length ? { ignore } : {}),
     ...(Object.keys(include).length ? { include } : {})
   });
-  spinner.succeed(`${gradient.fruit(`perfection`)} 💖`)
+  spinner.succeed(`${gradient.fruit(`perfection`)} 💪`)
 }
 
 program
   .version(version)
   .name("install-perfection")
-  .description("Install dependencies with control 💖")
+  .description("Install dependencies with control 💪")
   .option("-c, --config <config>", "config path")
   .option("--debug", "enables debug mode")
   .option("-d, --dest <string>", "dest path")
