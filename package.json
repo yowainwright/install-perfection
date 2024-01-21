@@ -41,13 +41,13 @@
     "execa": "^8.0.1",
     "gradient-string": "^2.0.2",
     "json5": "^2.2.3",
-    "ora": "^7.0.1"
+    "ora": "^8.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "18.4.4",
     "@commitlint/config-conventional": "18.4.4",
     "@types/gradient-string": "1.1.5",
-    "@types/node": "20.11.3",
+    "@types/node": "20.11.5",
     "@typescript-eslint/eslint-plugin": "6.19.0",
     "@typescript-eslint/parser": "6.19.0",
     "codependence": "^0.2.6",
@@ -56,7 +56,7 @@
     "husky": "^8.0.3",
     "is-ci": "^3.0.1",
     "lint-staged": "15.2.0",
-    "prettier": "3.2.2",
+    "prettier": "3.2.4",
     "release-it": "17.0.1",
     "rimraf": "5.0.5",
     "ts-node": "10.9.2",
@@ -64,7 +64,7 @@
     "tsup": "8.0.1",
     "type-fest": "4.9.0",
     "typescript": "5.3.3",
-    "vitest": "^0.34.6"
+    "vitest": "^1.2.1"
   },
   "commitlint": {
     "extends": [
