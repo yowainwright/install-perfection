@@ -6,7 +6,7 @@
 [![Github](https://badgen.net/badge/icon/github?icon=github&label&color=grey)](https://github.com/yowainwright/install-perfection)
 
 
-_**Install dependencies with control 💖**_
+_**Install dependencies with control 💪**_
 
 Sometimes, you need nuance and control over your npm dependencies.
 
@@ -16,7 +16,9 @@ Sometimes, you need nuance and control over your npm dependencies.
 
 ## How easy is Install Perfection to set up?
 
-Very easy. If not, [submit an issue](https://github.com/yowainwright/install-perfection/issues)!
+#### Very easy! 
+
+_If not, [submit an issue](https://github.com/yowainwright/install-perfection/issues)!_
 
 You can use Install Perfection as a CLI only.
 ```bash
@@ -30,9 +32,11 @@ If you'd like to use it a bit more explicitly, you can configure it in your `pac
 {
   ...
   "install": {
+    // include this dependency
     "include": {
       "playwright-core": "latest"
     },
+    // but don't include this one!
     "ignore": {
       "playwright": "latest"
     }
@@ -74,7 +78,7 @@ install({
 
 ## How do I use Install Perfection?
 
-Install Perfection is built to be used as a CLI first and foremost. It also exports node functions which can be used to preform the same install operation.
+Install Perfection is built to be used as a CLI _**first and foremost**_. It also exports node functions which can be used to preform the same install operation.
 
 ---
 
@@ -93,7 +97,7 @@ Listed below are the CLI options and arguments to execute install-perfection. To
 ```bash
 Usage: install-perfection [options]
 
-Install dependencies with control, perfectly 💖
+Install dependencies with control, perfectly 💪
 
 Options:
   -V, --version               output the version number
@@ -112,6 +116,7 @@ Options:
 ```
 
 ---
+
 ### Recipes
 
 Install an additional list of dependencies.
